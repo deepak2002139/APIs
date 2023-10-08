@@ -1,0 +1,33 @@
+import https from "https";
+
+appendFile.get("/",(req,res)=>{
+    const options={
+        hostname:"board-api.appbrewery.com",
+        path:"/random",
+        method:"GET",
+    };
+
+    const request=https.request(options,(response)=>{
+        let data="";
+        response.on("data",(chunk)=>{
+            data+=chunk;
+        });
+
+    respose.on("end",{}=>{
+        try {
+            const result=json.parse(data);
+            res.render("sample1.js",{activity :data})
+        } 
+        catch(error) 
+        {
+            console.error("failed to parse response:",error.message);
+            res.status(500).send("Failed to fetch activity. try again later");
+        }
+    });
+});
+
+reqest.on("error",(error)=>{
+    console.error("failed to make  request:",error.message);
+    res.status(500).send("failed to fetch activity. please try again.");
+});
+)};
