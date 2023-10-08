@@ -1,0 +1,5 @@
+import axios from "axious";
+app.get("/",async(req,res)=>{
+    const response=await axios.get("https://board-api.appbrewery.com/random");
+    res.render("index.ejs",{activity:response.data});
+});
